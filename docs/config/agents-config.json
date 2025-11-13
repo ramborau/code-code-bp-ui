@@ -1,0 +1,261 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-13",
+  "agents": [
+    {
+      "name": "UI-HELPER",
+      "role": "Requirements Analyst & User Interface Specialist",
+      "description": "Gathers requirements, asks clarifying questions, validates completeness",
+      "priority": 1,
+      "enabled": true,
+      "permissions": {
+        "read": [
+          "docs/**",
+          "*.md",
+          "demo/**",
+          "src/components/**"
+        ],
+        "write": [
+          "docs/requirements/**",
+          "logs/agents/ui-helper.log"
+        ],
+        "execute": [
+          "requirement-validation-scripts"
+        ],
+        "blocked": [
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "RULES.MD",
+          "demo/**"
+        ]
+      },
+      "responsibilities": [
+        "Engage with stakeholders",
+        "Ask detailed clarifying questions",
+        "Create requirement documents",
+        "Validate requirement completeness",
+        "Ensure branding consistency"
+      ],
+      "outputArtifacts": [
+        "Initial requirement notes",
+        "Clarifying questions document",
+        "Validated requirements checklist",
+        "UI/UX specifications"
+      ],
+      "communicationStyle": {
+        "tone": "Professional and friendly",
+        "approach": "Ask open-ended questions",
+        "validation": "Summarize understanding for confirmation"
+      },
+      "metricsTracked": [
+        "Requirements completeness score",
+        "Questions asked per project",
+        "Requirement change rate",
+        "Stakeholder satisfaction"
+      ],
+      "successTargets": {
+        "completenessScore": 95,
+        "questionsPerProject": 15,
+        "changeRate": 10,
+        "satisfaction": 90
+      }
+    },
+    {
+      "name": "TECHNICAL",
+      "role": "Technical Architect & Documentation Specialist",
+      "description": "Generates technical documentation, creates configs, writes architecture specs",
+      "priority": 2,
+      "enabled": true,
+      "permissions": {
+        "read": [
+          "**/*"
+        ],
+        "write": [
+          "docs/**",
+          "*.md",
+          "*.json",
+          "src/**/*.ts",
+          "src/**/*.tsx",
+          "logs/agents/technical.log"
+        ],
+        "execute": [
+          "documentation-generators",
+          "file-splitters",
+          "config-validators"
+        ],
+        "blocked": [
+          "demo/**"
+        ]
+      },
+      "responsibilities": [
+        "Receive validated requirements",
+        "Generate comprehensive documentation",
+        "Create modular split files",
+        "Produce JSON configuration files",
+        "Write CLAUDE.MD instructions",
+        "Create RULES.MD guidelines",
+        "Generate TASKS.MD"
+      ],
+      "fileSplittingRules": {
+        "maxLineCount": 500,
+        "splitStrategy": "Logical separation by feature/module",
+        "namingConvention": "[MODULE]-[PART]-[NUMBER].md"
+      },
+      "outputArtifacts": [
+        "PRD.MD (or split PRD files)",
+        "CLAUDE.MD",
+        "RULES.MD",
+        "AGENTS.MD",
+        "BRANDING.MD",
+        "TASKS.MD",
+        "JSON configuration files"
+      ],
+      "metricsTracked": [
+        "Documentation coverage",
+        "File length compliance",
+        "JSON validation errors",
+        "Cross-reference accuracy"
+      ],
+      "successTargets": {
+        "documentationCoverage": 100,
+        "fileLengthCompliance": 100,
+        "jsonValidationErrors": 0,
+        "crossReferenceAccuracy": 100
+      }
+    },
+    {
+      "name": "MONITOR",
+      "role": "Compliance & Quality Assurance Specialist",
+      "description": "Monitors development, validates compliance, enforces rules, reports violations",
+      "priority": 3,
+      "enabled": true,
+      "permissions": {
+        "read": [
+          "**/*"
+        ],
+        "write": [
+          "logs/**",
+          "reports/**"
+        ],
+        "execute": [
+          "validation-scripts",
+          "compliance-checkers",
+          "automated-tests"
+        ],
+        "block": [
+          "non-compliant-commits",
+          "rule-violations"
+        ]
+      },
+      "responsibilities": [
+        "Continuously monitor development progress",
+        "Validate adherence to RULES.MD",
+        "Check task completion against TASKS.MD",
+        "Ensure Claude Code follows CLAUDE.MD",
+        "Report deviations and violations",
+        "Enforce task loops and workflows"
+      ],
+      "monitoringActivities": [
+        "Pre-commit checks",
+        "Rule compliance validation",
+        "Task verification",
+        "Documentation sync checks",
+        "Quality gate enforcement"
+      ],
+      "monitoringFrequency": {
+        "realtime": "During active development",
+        "preCommit": "Before any git commit",
+        "scheduled": "Daily compliance reports",
+        "onDemand": "When requested by developers"
+      },
+      "violationResponse": [
+        "Detect violation",
+        "Log to monitoring.log",
+        "Block commit if critical",
+        "Notify developer",
+        "Suggest corrective action",
+        "Track until resolved"
+      ],
+      "metricsTracked": [
+        "Rule violations detected",
+        "False positive rate",
+        "Average response time",
+        "Compliance rate"
+      ],
+      "successTargets": {
+        "falsePositiveRate": 5,
+        "averageResponseTimeMinutes": 1,
+        "complianceRate": 98
+      }
+    },
+    {
+      "name": "Claude Code",
+      "role": "AI Development Assistant",
+      "description": "Implements code based on tasks, follows strict instructions from CLAUDE.MD",
+      "priority": 4,
+      "enabled": true,
+      "permissions": {
+        "read": [
+          "**/*"
+        ],
+        "write": [
+          "src/**",
+          "tests/**",
+          "starter/**"
+        ],
+        "execute": [
+          "npm scripts",
+          "test commands",
+          "build commands"
+        ],
+        "blocked": [
+          "demo/**",
+          "RULES.MD",
+          "AGENTS.MD"
+        ]
+      },
+      "responsibilities": [
+        "Implement assigned tasks only",
+        "Follow CLAUDE.MD instructions strictly",
+        "Write tests for all code",
+        "Update documentation",
+        "Request clarification when needed"
+      ],
+      "restrictions": [
+        "No autonomous feature development",
+        "No code without task reference",
+        "No files over 500 lines",
+        "No editing demo/ folder",
+        "No custom colors or fonts",
+        "No secrets in code"
+      ],
+      "metricsTracked": [
+        "Tasks completed",
+        "Average task completion time",
+        "Rule violations",
+        "Test coverage"
+      ]
+    }
+  ],
+  "interAgentCommunication": {
+    "protocol": "JSON messages",
+    "logFile": "logs/agent-comm.json",
+    "messageFormat": {
+      "from": "string (agent name)",
+      "to": "string (agent name)",
+      "timestamp": "ISO 8601 datetime",
+      "messageType": "string",
+      "payload": "object"
+    }
+  },
+  "escalationPath": [
+    "Developer makes change",
+    "MONITOR detects potential issue",
+    "MONITOR checks against RULES.MD",
+    "If violation: Log and take action based on severity",
+    "TECHNICAL agent reviews if needed",
+    "Override or rejection decision",
+    "Documentation of decision"
+  ]
+}

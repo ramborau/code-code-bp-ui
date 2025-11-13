@@ -1,0 +1,168 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-13",
+  "rules": [
+    {
+      "id": "RULE-FM-001",
+      "category": "File Management",
+      "description": "Maximum file length 500 lines",
+      "severity": "CRITICAL",
+      "automated": true,
+      "checkCommand": "wc -l < $file",
+      "validationLogic": "lineCount <= 500",
+      "violationMessage": "File exceeds 500 lines. Please split into multiple files.",
+      "enabled": true
+    },
+    {
+      "id": "RULE-FM-002",
+      "category": "File Management",
+      "description": "File naming convention",
+      "severity": "MANDATORY",
+      "automated": true,
+      "pattern": "^[A-Z]+-[A-Z]+-[A-Z0-9]+\\.[a-z]+$",
+      "example": "AUTH-SERVICE-API.ts",
+      "violationMessage": "File name must follow format: [MODULE]-[TYPE]-[PART].ext",
+      "enabled": true
+    },
+    {
+      "id": "RULE-CD-001",
+      "category": "Code Development",
+      "description": "No autonomous development",
+      "severity": "CRITICAL",
+      "automated": false,
+      "manualCheck": true,
+      "violationMessage": "Code changes require task assignment in TASKS.MD",
+      "enabled": true
+    },
+    {
+      "id": "RULE-CD-002",
+      "category": "Code Development",
+      "description": "Task-driven development only",
+      "severity": "CRITICAL",
+      "automated": true,
+      "checkCommand": "git log -1 --pretty=%B",
+      "pattern": "\\[TASK-[A-Z]+-[0-9]+\\]",
+      "violationMessage": "Commit message must include task reference [TASK-XXX-###]",
+      "enabled": true
+    },
+    {
+      "id": "RULE-CD-003",
+      "category": "Code Development",
+      "description": "TypeScript strict mode",
+      "severity": "MANDATORY",
+      "automated": true,
+      "checkCommand": "npm run type-check",
+      "violationMessage": "TypeScript compilation failed. Fix type errors.",
+      "enabled": true
+    },
+    {
+      "id": "RULE-UI-001",
+      "category": "UI & Design",
+      "description": "Brand color usage only",
+      "severity": "CRITICAL",
+      "automated": true,
+      "approvedColors": ["#00c307", "#00a006", "#1acd17", "#00c3071a"],
+      "scanPattern": "#[0-9a-fA-F]{6}",
+      "violationMessage": "Unapproved color used. Only use colors from BRANDING.MD",
+      "enabled": true
+    },
+    {
+      "id": "RULE-UI-002",
+      "category": "UI & Design",
+      "description": "Font family usage",
+      "severity": "CRITICAL",
+      "automated": true,
+      "approvedFonts": ["Inter", "sans-serif"],
+      "violationMessage": "Unapproved font used. Only use Inter font family.",
+      "enabled": true
+    },
+    {
+      "id": "RULE-UI-003",
+      "category": "UI & Design",
+      "description": "Component source from demo/ only",
+      "severity": "CRITICAL",
+      "automated": true,
+      "checkPattern": "from '@/demo/",
+      "violationMessage": "Components must be imported from demo/ folder only",
+      "enabled": true
+    },
+    {
+      "id": "RULE-GIT-001",
+      "category": "Git & Version Control",
+      "description": "Commit message format",
+      "severity": "MANDATORY",
+      "automated": true,
+      "pattern": "^(feat|fix|docs|style|refactor|test|chore)\\([a-z]+\\): .+ \\[TASK-[A-Z]+-[0-9]+\\]$",
+      "example": "feat(auth): add password reset [TASK-AUTH-005]",
+      "violationMessage": "Commit message must follow conventional commits format with task reference",
+      "enabled": true
+    },
+    {
+      "id": "RULE-GIT-003",
+      "category": "Git & Version Control",
+      "description": "No direct commits to main",
+      "severity": "CRITICAL",
+      "automated": true,
+      "checkCommand": "git rev-parse --abbrev-ref HEAD",
+      "violationMessage": "Direct commits to main branch are prohibited. Use feature branches and PRs.",
+      "enabled": true
+    },
+    {
+      "id": "RULE-SEC-001",
+      "category": "Security",
+      "description": "No secrets in code",
+      "severity": "CRITICAL",
+      "automated": true,
+      "scanPatterns": [
+        "API[_-]?KEY",
+        "SECRET",
+        "PASSWORD",
+        "TOKEN",
+        "sk_live_",
+        "pk_live_"
+      ],
+      "violationMessage": "Secrets detected in code. Use environment variables only.",
+      "enabled": true
+    },
+    {
+      "id": "RULE-VT-001",
+      "category": "Validation & Testing",
+      "description": "Pre-commit validation",
+      "severity": "MANDATORY",
+      "automated": true,
+      "checks": [
+        "TypeScript compilation",
+        "ESLint",
+        "Prettier",
+        "File length",
+        "Task reference",
+        "Tests"
+      ],
+      "violationMessage": "Pre-commit validation failed. Fix errors before committing.",
+      "enabled": true
+    }
+  ],
+  "severityLevels": {
+    "CRITICAL": {
+      "action": "BLOCK",
+      "description": "Immediate commit block, must be fixed",
+      "notifyTeamLead": true
+    },
+    "MANDATORY": {
+      "action": "WARN",
+      "description": "Warning issued, must fix within 24 hours",
+      "createTask": true
+    },
+    "RECOMMENDED": {
+      "action": "SUGGEST",
+      "description": "Suggestion provided, optional fix",
+      "trackForImprovement": true
+    }
+  },
+  "violationTracking": {
+    "logFile": "logs/violations.log",
+    "format": "json",
+    "retentionDays": 90
+  }
+}

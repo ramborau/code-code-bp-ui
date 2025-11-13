@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "projectName": "Code-Code-BP-UI",
+  "version": "1.0.0",
+  "created": "2025-11-13",
+  "description": "Enterprise UI component library and template system with integrated skill-based development workflow",
+  "stack": {
+    "frontend": {
+      "framework": "Next.js 14",
+      "language": "TypeScript",
+      "styling": "Tailwind CSS",
+      "stateManagement": "Zustand",
+      "testing": "Jest + React Testing Library"
+    },
+    "backend": {
+      "runtime": "Node.js",
+      "api": "Next.js API Routes",
+      "authentication": "BetterAuth",
+      "database": "PostgreSQL",
+      "orm": "Prisma"
+    },
+    "devops": {
+      "versionControl": "Git",
+      "cicd": "GitHub Actions",
+      "hosting": "Vercel",
+      "monitoring": "Sentry"
+    }
+  },
+  "branding": {
+    "colors": {
+      "primary": "#00c307",
+      "primaryDeep": "#00a006",
+      "primaryMild": "#1acd17",
+      "primarySubtle": "#00c3071a",
+      "success": "#10b981",
+      "error": "#ff6a55",
+      "warning": "#f59e0b",
+      "info": "#2a85ff"
+    },
+    "fonts": {
+      "primary": "Inter",
+      "fallback": "sans-serif"
+    },
+    "spacing": {
+      "baseUnit": "4px"
+    }
+  },
+  "rules": {
+    "maxFileLength": 500,
+    "taskReferenceRequired": true,
+    "demoFolderReadOnly": true,
+    "strictTypeScript": true,
+    "testCoverageMinimum": 80
+  },
+  "agents": {
+    "uiHelper": {
+      "enabled": true,
+      "role": "Requirements Analyst",
+      "priority": 1
+    },
+    "technical": {
+      "enabled": true,
+      "role": "Technical Architect",
+      "priority": 2
+    },
+    "monitor": {
+      "enabled": true,
+      "role": "Quality Assurance",
+      "priority": 3
+    }
+  },
+  "directories": {
+    "source": "src/",
+    "components": "src/components/",
+    "demo": "demo/",
+    "starter": "starter/",
+    "docs": "docs/",
+    "tests": "tests/",
+    "logs": "logs/"
+  },
+  "documentation": {
+    "agents": "AGENTS.MD",
+    "rules": "RULES.MD",
+    "tasks": "TASKS.MD",
+    "prdTemplate": "PRD-TEMPLATE.MD",
+    "claudeInstructions": "CLAUDE.MD",
+    "branding": "BRANDING.MD"
+  }
+}

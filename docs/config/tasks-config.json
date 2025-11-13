@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "lastUpdated": "2025-11-13",
+  "taskCategories": [
+    "INTAKE",
+    "PLANNING",
+    "EXECUTION",
+    "VALIDATION",
+    "REVIEW",
+    "DEPLOYMENT",
+    "FEEDBACK"
+  ],
+  "taskStatuses": [
+    "NOT_STARTED",
+    "IN_PROGRESS",
+    "BLOCKED",
+    "UNDER_REVIEW",
+    "COMPLETED",
+    "CANCELLED"
+  ],
+  "priorityLevels": {
+    "CRITICAL": {
+      "emoji": "🔴",
+      "value": 1,
+      "description": "Must be completed immediately"
+    },
+    "HIGH": {
+      "emoji": "🟡",
+      "value": 2,
+      "description": "Important, complete soon"
+    },
+    "MEDIUM": {
+      "emoji": "🟢",
+      "value": 3,
+      "description": "Standard priority"
+    },
+    "LOW": {
+      "emoji": "⚪",
+      "value": 4,
+      "description": "Can be deferred"
+    }
+  },
+  "tasks": [
+    {
+      "id": "TASK-INTAKE-001",
+      "title": "Initial Requirement Gathering",
+      "category": "INTAKE",
+      "assignedTo": "UI-HELPER",
+      "priority": "CRITICAL",
+      "status": "NOT_STARTED",
+      "dependencies": [],
+      "estimatedHours": 4,
+      "description": "Gather comprehensive requirements from stakeholders",
+      "acceptanceCriteria": [
+        "All questions answered",
+        "Stakeholder sign-off obtained",
+        "No ambiguous requirements"
+      ]
+    },
+    {
+      "id": "TASK-INTAKE-002",
+      "title": "Requirement Validation",
+      "category": "INTAKE",
+      "assignedTo": "UI-HELPER",
+      "priority": "CRITICAL",
+      "status": "NOT_STARTED",
+      "dependencies": ["TASK-INTAKE-001"],
+      "estimatedHours": 2,
+      "description": "Validate completeness and clarity of gathered requirements",
+      "acceptanceCriteria": [
+        "Validation checklist 100% complete",
+        "Zero ambiguous requirements"
+      ]
+    },
+    {
+      "id": "TASK-PLANNING-001",
+      "title": "Generate Product Requirements Document",
+      "category": "PLANNING",
+      "assignedTo": "TECHNICAL",
+      "priority": "CRITICAL",
+      "status": "NOT_STARTED",
+      "dependencies": ["TASK-INTAKE-002"],
+      "estimatedHours": 5,
+      "description": "Create comprehensive PRD from validated requirements",
+      "acceptanceCriteria": [
+        "All sections complete",
+        "No file exceeds 500 lines",
+        "Cross-references working"
+      ]
+    },
+    {
+      "id": "TASK-PLANNING-002",
+      "title": "Create Claude Development Instructions",
+      "category": "PLANNING",
+      "assignedTo": "TECHNICAL",
+      "priority": "CRITICAL",
+      "status": "NOT_STARTED",
+      "dependencies": ["TASK-PLANNING-001"],
+      "estimatedHours": 3,
+      "description": "Generate CLAUDE.MD with specific development instructions",
+      "acceptanceCriteria": [
+        "Clear, unambiguous instructions",
+        "All RULES.MD rules referenced"
+      ]
+    }
+  ],
+  "taskLoop": {
+    "enabled": true,
+    "stages": [
+      {
+        "name": "INTAKE",
+        "description": "Requirement gathering and validation",
+        "primaryAgent": "UI-HELPER"
+      },
+      {
+        "name": "PLANNING",
+        "description": "Documentation and task breakdown",
+        "primaryAgent": "TECHNICAL"
+      },
+      {
+        "name": "EXECUTION",
+        "description": "Code implementation",
+        "primaryAgent": "Claude Code"
+      },
+      {
+        "name": "VALIDATION",
+        "description": "Rule compliance and quality checks",
+        "primaryAgent": "MONITOR"
+      },
+      {
+        "name": "REVIEW",
+        "description": "Human code review",
+        "primaryAgent": "Team"
+      },
+      {
+        "name": "DEPLOYMENT",
+        "description": "Build and deploy",
+        "primaryAgent": "System"
+      },
+      {
+        "name": "FEEDBACK",
+        "description": "Metrics collection and improvement",
+        "primaryAgent": "All"
+      }
+    ]
+  }
+}
