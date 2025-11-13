@@ -1,0 +1,335 @@
+{
+  "agentName": "Ecme UI Agent",
+  "version": "1.0.0",
+  "description": "Specialized AI agent for creating and working with Ecme UI components",
+  "capabilities": [
+    "component-creation",
+    "page-generation",
+    "dashboard-building",
+    "form-generation",
+    "table-creation",
+    "theme-customization",
+    "crud-generation",
+    "authentication-setup",
+    "feature-implementation",
+    "debugging",
+    "optimization"
+  ],
+  "knowledge": {
+    "frameworks": [
+      "React 18+",
+      "Next.js 14+",
+      "TypeScript 5+",
+      "Tailwind CSS 3+"
+    ],
+    "libraries": [
+      "BetterAuth",
+      "Zustand",
+      "TanStack Table",
+      "ApexCharts",
+      "React Hook Form",
+      "Zod"
+    ],
+    "patterns": [
+      "Server Components",
+      "Client Components",
+      "Composition",
+      "Custom Hooks",
+      "HOC",
+      "Compound Components"
+    ]
+  },
+  "componentLibrary": {
+    "sharedComponents": 32,
+    "uiComponents": 45,
+    "hooks": 15,
+    "utilities": 12,
+    "hoc": 1
+  },
+  "workflows": {
+    "createPage": {
+      "steps": [
+        "Analyze requirements",
+        "Choose appropriate layout",
+        "Select components",
+        "Implement data fetching",
+        "Add route configuration",
+        "Add navigation (optional)",
+        "Test responsiveness",
+        "Add error handling"
+      ],
+      "template": "See /demo/UI-SKILL/prompts/UI-AGENT-PROMPTS.md#page-generation-agent"
+    },
+    "createComponent": {
+      "steps": [
+        "Define component interface",
+        "Implement component logic",
+        "Add styling with Tailwind",
+        "Add accessibility features",
+        "Add loading/error states",
+        "Test responsiveness",
+        "Document usage"
+      ],
+      "template": "See /demo/UI-SKILL/prompts/UI-AGENT-PROMPTS.md#component-creation-agent"
+    },
+    "createDashboard": {
+      "steps": [
+        "Plan layout structure",
+        "Design KPI cards",
+        "Configure charts",
+        "Set up data tables",
+        "Implement filters",
+        "Add export functionality",
+        "Test with real data"
+      ],
+      "template": "See /demo/UI-SKILL/examples/dashboard-example.tsx"
+    },
+    "generateForm": {
+      "steps": [
+        "Define form fields",
+        "Add validation rules",
+        "Implement submit handler",
+        "Add error handling",
+        "Add loading states",
+        "Add success feedback"
+      ],
+      "template": "See /demo/UI-SKILL/prompts/UI-AGENT-PROMPTS.md#form-generator-agent"
+    }
+  },
+  "bestPractices": {
+    "typescript": {
+      "rules": [
+        "Always define prop interfaces",
+        "Use strict mode",
+        "Avoid 'any' type",
+        "Use type inference when possible",
+        "Export types for reusability"
+      ]
+    },
+    "react": {
+      "rules": [
+        "Server components by default",
+        "Use 'use client' only when needed",
+        "Proper key props in lists",
+        "Avoid prop drilling",
+        "Use proper dependency arrays"
+      ]
+    },
+    "nextjs": {
+      "rules": [
+        "Async server components for data fetching",
+        "Use route handlers for API",
+        "Proper metadata for SEO",
+        "Use dynamic imports for code splitting",
+        "Implement error boundaries"
+      ]
+    },
+    "styling": {
+      "rules": [
+        "Tailwind utility classes first",
+        "CSS variables for theming",
+        "Consistent spacing scale",
+        "Mobile-first responsive design",
+        "Dark mode support"
+      ]
+    },
+    "performance": {
+      "rules": [
+        "Lazy load heavy components",
+        "Use React.memo for expensive renders",
+        "Debounce expensive operations",
+        "Optimize images with Next Image",
+        "Implement pagination for large lists"
+      ]
+    },
+    "accessibility": {
+      "rules": [
+        "Semantic HTML elements",
+        "ARIA labels where needed",
+        "Keyboard navigation support",
+        "Color contrast compliance",
+        "Screen reader friendly"
+      ]
+    }
+  },
+  "codeTemplates": {
+    "serverComponent": {
+      "code": "import type { Metadata } from 'next';\n\nexport const metadata: Metadata = {\n  title: 'Page Title',\n  description: 'Page description'\n};\n\nasync function getData() {\n  const res = await fetch('...');\n  return res.json();\n}\n\nexport default async function Page() {\n  const data = await getData();\n  return <div>{/* content */}</div>;\n}"
+    },
+    "clientComponent": {
+      "code": "'use client';\n\nimport { useState } from 'react';\nimport { Button } from '@/components/ui';\n\nexport default function Component() {\n  const [state, setState] = useState();\n  return <div>{/* content */}</div>;\n}"
+    },
+    "customHook": {
+      "code": "import { useState, useEffect } from 'react';\n\nexport const useCustomHook = () => {\n  const [state, setState] = useState();\n  \n  useEffect(() => {\n    // Effect logic\n  }, []);\n  \n  return { state, setState };\n};"
+    },
+    "apiRoute": {
+      "code": "import { NextResponse } from 'next/server';\nimport type { NextRequest } from 'next/server';\n\nexport async function GET(request: NextRequest) {\n  try {\n    const data = { message: 'Success' };\n    return NextResponse.json(data);\n  } catch (error: any) {\n    return NextResponse.json(\n      { error: error.message },\n      { status: 500 }\n    );\n  }\n}"
+    }
+  },
+  "exampleProjects": {
+    "dashboard": {
+      "path": "/demo/UI-SKILL/examples/dashboard-example.tsx",
+      "description": "Complete dashboard with stats, charts, and tables",
+      "components": [
+        "AdaptiveCard",
+        "Chart",
+        "DataTable",
+        "GrowShrinkValue",
+        "AbbreviateNumber",
+        "Button",
+        "Select"
+      ]
+    }
+  },
+  "resources": {
+    "documentation": {
+      "componentsLibrary": "/demo/COMPONENTS-LIBRARY.ts",
+      "mcpConfig": "/demo/mcp-server-config.json",
+      "uiDocs": ["/UI.MD", "/UI2.MD"],
+      "skillReadme": "/demo/UI-SKILL/README.md",
+      "agentPrompts": "/demo/UI-SKILL/prompts/UI-AGENT-PROMPTS.md"
+    },
+    "examples": {
+      "dashboard": "/demo/UI-SKILL/examples/dashboard-example.tsx",
+      "demo": "/demo/src/app/(protected-pages)"
+    },
+    "components": {
+      "shared": "/demo/src/components/shared",
+      "ui": "/demo/src/components/ui",
+      "auth": "/demo/src/components/auth"
+    },
+    "hooks": "/demo/src/utils/hooks",
+    "utils": "/demo/src/utils",
+    "types": "/demo/src/@types"
+  },
+  "supportedOperations": {
+    "generation": [
+      "Generate new page",
+      "Generate dashboard",
+      "Generate form",
+      "Generate table",
+      "Generate CRUD pages",
+      "Generate auth pages",
+      "Generate API routes"
+    ],
+    "modification": [
+      "Add component to page",
+      "Update component props",
+      "Refactor component",
+      "Add validation",
+      "Add error handling",
+      "Add loading states"
+    ],
+    "customization": [
+      "Change theme colors",
+      "Modify layout",
+      "Add custom styles",
+      "Configure navigation",
+      "Set up authentication"
+    ],
+    "optimization": [
+      "Improve performance",
+      "Add lazy loading",
+      "Optimize images",
+      "Reduce bundle size",
+      "Add caching"
+    ],
+    "debugging": [
+      "Fix TypeScript errors",
+      "Fix styling issues",
+      "Fix responsive layout",
+      "Debug state management",
+      "Fix API integration"
+    ]
+  },
+  "contextAwareness": {
+    "projectStructure": {
+      "appDirectory": "app/",
+      "componentsDirectory": "src/components/",
+      "utilsDirectory": "src/utils/",
+      "configsDirectory": "src/configs/",
+      "typesDirectory": "src/@types/"
+    },
+    "conventions": {
+      "naming": "PascalCase for components, camelCase for functions",
+      "imports": "Use @ alias for src directory",
+      "exports": "Named exports for utilities, default for components",
+      "files": "kebab-case for files, PascalCase for components"
+    }
+  },
+  "integrations": {
+    "stateManagement": {
+      "library": "Zustand",
+      "storeLocation": "src/store",
+      "usage": "import { useStore } from '@/store'"
+    },
+    "authentication": {
+      "provider": "BetterAuth",
+      "config": "src/lib/auth.ts",
+      "client": "src/lib/auth-client.ts"
+    },
+    "styling": {
+      "framework": "Tailwind CSS",
+      "config": "tailwind.config.ts",
+      "customStyles": "src/assets/styles"
+    },
+    "api": {
+      "service": "ApiService",
+      "location": "src/services/ApiService.ts"
+    }
+  },
+  "errorHandling": {
+    "patterns": [
+      "try-catch blocks for async operations",
+      "Error boundaries for React components",
+      "Toast notifications for user feedback",
+      "Fallback UI for errors",
+      "Logging for debugging"
+    ],
+    "examples": {
+      "asyncError": "try { await api(); } catch (error) { toast.error('Failed'); }",
+      "componentError": "Use error.tsx in Next.js app directory",
+      "formError": "Set error state and display below field"
+    }
+  },
+  "testing": {
+    "recommended": [
+      "Jest for unit tests",
+      "React Testing Library for components",
+      "Playwright for E2E tests"
+    ],
+    "patterns": [
+      "Test user interactions",
+      "Test error states",
+      "Test loading states",
+      "Test accessibility"
+    ]
+  },
+  "deployment": {
+    "platforms": [
+      "Vercel (recommended)",
+      "Netlify",
+      "AWS Amplify",
+      "Custom server with Docker"
+    ],
+    "buildCommand": "npm run build",
+    "outputDirectory": ".next",
+    "environmentVariables": [
+      "NEXT_PUBLIC_APP_URL",
+      "DATABASE_URL",
+      "BETTER_AUTH_SECRET"
+    ]
+  },
+  "troubleshooting": {
+    "common": {
+      "hydrationMismatch": "Check for server/client rendering differences",
+      "typeErrors": "Ensure all props have proper TypeScript types",
+      "stylingIssues": "Check Tailwind classes and CSS specificity",
+      "routingIssues": "Verify route configuration and file structure",
+      "stateIssues": "Check useState initialization and updates"
+    }
+  },
+  "version": "1.0.0",
+  "lastUpdated": "2024-01-17",
+  "maintainer": "Ecme Team"
+}

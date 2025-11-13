@@ -1,0 +1,820 @@
+{
+  "name": "ecme-ui-components",
+  "version": "1.0.0",
+  "description": "MCP Server for Ecme UI Components Library - Complete TypeScript component library with 45+ UI components, 32 shared components, 15 hooks, and 12 utility functions",
+  "mcpServers": {
+    "ecme-ui": {
+      "command": "node",
+      "args": ["dist/index.js"],
+      "env": {
+        "COMPONENTS_PATH": "/demo/src/components",
+        "UTILS_PATH": "/demo/src/utils"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "create-component",
+      "description": "Create a new UI component using Ecme design system",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "componentType": {
+            "type": "string",
+            "enum": [
+              "AbbreviateNumber",
+              "ActionLink",
+              "AdaptiveCard",
+              "Affix",
+              "AuthorityCheck",
+              "CalendarView",
+              "Chart",
+              "ConfirmDialog",
+              "Container",
+              "CustomFormatInput",
+              "DataTable",
+              "DebounceInput",
+              "DoubleSidedImage",
+              "EllipsisButton",
+              "GanttChart",
+              "GrowShrinkValue",
+              "IconText",
+              "ImageGallery",
+              "Loading",
+              "Masonry",
+              "MediaSkeleton",
+              "NavToggle",
+              "NumericInput",
+              "OtpInput",
+              "PasswordInput",
+              "PatternInput",
+              "RegionMap",
+              "RichTextEditor",
+              "SegmentItemOption",
+              "StickyFooter",
+              "SyntaxHighlighter",
+              "UsersAvatarGroup"
+            ],
+            "description": "Type of component to create"
+          },
+          "props": {
+            "type": "object",
+            "description": "Component properties"
+          },
+          "targetPath": {
+            "type": "string",
+            "description": "Target file path for the component"
+          }
+        },
+        "required": ["componentType", "targetPath"]
+      }
+    },
+    {
+      "name": "create-ui-component",
+      "description": "Create a base UI component (Button, Input, Card, etc.)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "componentType": {
+            "type": "string",
+            "enum": [
+              "Alert",
+              "Avatar",
+              "Badge",
+              "Button",
+              "Calendar",
+              "Card",
+              "Checkbox",
+              "DatePicker",
+              "Dialog",
+              "Drawer",
+              "Dropdown",
+              "Form",
+              "Input",
+              "InputGroup",
+              "Menu",
+              "Notification",
+              "Pagination",
+              "Progress",
+              "Radio",
+              "ScrollBar",
+              "Segment",
+              "Select",
+              "Skeleton",
+              "Slider",
+              "Spinner",
+              "Steps",
+              "Switcher",
+              "Table",
+              "Tabs",
+              "Tag",
+              "TimeInput",
+              "Timeline",
+              "Tooltip",
+              "Upload"
+            ]
+          },
+          "props": {
+            "type": "object"
+          },
+          "targetPath": {
+            "type": "string"
+          }
+        },
+        "required": ["componentType", "targetPath"]
+      }
+    },
+    {
+      "name": "apply-hook",
+      "description": "Apply a custom React hook to a component",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "hookName": {
+            "type": "string",
+            "enum": [
+              "useAppendQueryParams",
+              "useAuthority",
+              "useCurrentSession",
+              "useDebounce",
+              "useInfiniteScroll",
+              "useInterval",
+              "useLayout",
+              "useMenuActive",
+              "useNavigation",
+              "useRandomBgColor",
+              "useResponsive",
+              "useScrollTop",
+              "useTheme",
+              "useTimeOutMessage",
+              "useTranslation"
+            ],
+            "description": "Custom hook to apply"
+          },
+          "componentPath": {
+            "type": "string",
+            "description": "Path to component file"
+          },
+          "hookConfig": {
+            "type": "object",
+            "description": "Hook configuration options"
+          }
+        },
+        "required": ["hookName", "componentPath"]
+      }
+    },
+    {
+      "name": "apply-utility",
+      "description": "Apply utility function to code",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "utilityName": {
+            "type": "string",
+            "enum": [
+              "acronym",
+              "classNames",
+              "fileSizeUnit",
+              "isBrowser",
+              "isLastChild",
+              "paginate",
+              "reoderArray",
+              "reorderDragable",
+              "sleep",
+              "sortBy",
+              "wildCardSearch"
+            ]
+          },
+          "targetPath": {
+            "type": "string"
+          },
+          "utilityConfig": {
+            "type": "object"
+          }
+        },
+        "required": ["utilityName", "targetPath"]
+      }
+    },
+    {
+      "name": "generate-form",
+      "description": "Generate a complete form with validation using Ecme components",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "type": { "type": "string" },
+                "label": { "type": "string" },
+                "required": { "type": "boolean" },
+                "validation": { "type": "object" }
+              }
+            }
+          },
+          "formName": {
+            "type": "string"
+          },
+          "onSubmit": {
+            "type": "string",
+            "description": "Submit handler code"
+          },
+          "targetPath": {
+            "type": "string"
+          }
+        },
+        "required": ["fields", "formName", "targetPath"]
+      }
+    },
+    {
+      "name": "generate-dashboard",
+      "description": "Generate a dashboard layout with charts and stats",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "layout": {
+            "type": "string",
+            "enum": ["ecommerce", "analytics", "project", "marketing"]
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["stats", "charts", "tables", "calendar", "tasks"]
+            }
+          },
+          "targetPath": {
+            "type": "string"
+          }
+        },
+        "required": ["layout", "components", "targetPath"]
+      }
+    },
+    {
+      "name": "generate-auth-pages",
+      "description": "Generate authentication pages (sign in, sign up, forgot password)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "pages": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["sign-in", "sign-up", "forgot-password", "reset-password", "otp-verification"]
+            }
+          },
+          "layout": {
+            "type": "string",
+            "enum": ["simple", "side", "split"]
+          },
+          "provider": {
+            "type": "string",
+            "enum": ["betterauth", "next-auth", "custom"]
+          },
+          "targetDirectory": {
+            "type": "string"
+          }
+        },
+        "required": ["pages", "layout", "targetDirectory"]
+      }
+    },
+    {
+      "name": "create-data-table",
+      "description": "Create a DataTable with columns, sorting, filtering, and pagination",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "header": { "type": "string" },
+                "accessorKey": { "type": "string" },
+                "sortable": { "type": "boolean" },
+                "filterable": { "type": "boolean" }
+              }
+            }
+          },
+          "features": {
+            "type": "object",
+            "properties": {
+              "pagination": { "type": "boolean" },
+              "sorting": { "type": "boolean" },
+              "filtering": { "type": "boolean" },
+              "selection": { "type": "boolean" },
+              "resizable": { "type": "boolean" }
+            }
+          },
+          "dataSource": {
+            "type": "string",
+            "description": "API endpoint or data source"
+          },
+          "targetPath": {
+            "type": "string"
+          }
+        },
+        "required": ["columns", "targetPath"]
+      }
+    },
+    {
+      "name": "apply-theme",
+      "description": "Apply theme configuration to project",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "schema": {
+            "type": "string",
+            "enum": ["default", "blue", "purple", "custom"]
+          },
+          "mode": {
+            "type": "string",
+            "enum": ["light", "dark"]
+          },
+          "direction": {
+            "type": "string",
+            "enum": ["ltr", "rtl"]
+          },
+          "layout": {
+            "type": "string",
+            "enum": [
+              "blank",
+              "collapsibleSide",
+              "stackedSide",
+              "topBarClassic",
+              "framelessSide",
+              "contentOverlay"
+            ]
+          },
+          "primaryColor": {
+            "type": "string",
+            "description": "Custom primary color hex"
+          }
+        },
+        "required": ["schema"]
+      }
+    },
+    {
+      "name": "generate-crud-pages",
+      "description": "Generate complete CRUD pages (list, create, edit, detail)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "entityName": {
+            "type": "string",
+            "description": "Entity name (e.g., 'product', 'user')"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "type": { "type": "string" },
+                "label": { "type": "string" }
+              }
+            }
+          },
+          "features": {
+            "type": "object",
+            "properties": {
+              "search": { "type": "boolean" },
+              "filter": { "type": "boolean" },
+              "export": { "type": "boolean" },
+              "bulk-actions": { "type": "boolean" }
+            }
+          },
+          "apiEndpoint": {
+            "type": "string"
+          },
+          "targetDirectory": {
+            "type": "string"
+          }
+        },
+        "required": ["entityName", "fields", "targetDirectory"]
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "components://shared",
+      "name": "Shared Components",
+      "description": "32 high-level shared components",
+      "mimeType": "application/x-typescript"
+    },
+    {
+      "uri": "components://ui",
+      "name": "UI Components",
+      "description": "45+ base UI components",
+      "mimeType": "application/x-typescript"
+    },
+    {
+      "uri": "components://auth",
+      "name": "Authentication Components",
+      "description": "Sign in, sign up, password reset components",
+      "mimeType": "application/x-typescript"
+    },
+    {
+      "uri": "hooks://custom",
+      "name": "Custom Hooks",
+      "description": "15 custom React hooks for common functionality",
+      "mimeType": "application/x-typescript"
+    },
+    {
+      "uri": "utils://functions",
+      "name": "Utility Functions",
+      "description": "12 utility functions for data manipulation",
+      "mimeType": "application/x-typescript"
+    },
+    {
+      "uri": "templates://dashboard",
+      "name": "Dashboard Templates",
+      "description": "Pre-built dashboard layouts (ecommerce, analytics, project, marketing)",
+      "mimeType": "application/x-typescript"
+    },
+    {
+      "uri": "templates://forms",
+      "name": "Form Templates",
+      "description": "Complete form examples with validation",
+      "mimeType": "application/x-typescript"
+    },
+    {
+      "uri": "templates://tables",
+      "name": "Table Templates",
+      "description": "Advanced table examples with sorting, filtering, pagination",
+      "mimeType": "application/x-typescript"
+    }
+  ],
+  "prompts": [
+    {
+      "name": "create-page",
+      "description": "Guide for creating a new page with Ecme components",
+      "arguments": [
+        {
+          "name": "pageType",
+          "description": "Type of page (dashboard, form, list, detail)",
+          "required": true
+        },
+        {
+          "name": "features",
+          "description": "Required features",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "implement-feature",
+      "description": "Guide for implementing a specific feature",
+      "arguments": [
+        {
+          "name": "featureName",
+          "description": "Name of the feature",
+          "required": true
+        },
+        {
+          "name": "requirements",
+          "description": "Feature requirements",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "customize-theme",
+      "description": "Guide for customizing theme and branding",
+      "arguments": [
+        {
+          "name": "brandColor",
+          "description": "Primary brand color",
+          "required": false
+        },
+        {
+          "name": "font",
+          "description": "Font family",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "setup-authentication",
+      "description": "Guide for setting up authentication",
+      "arguments": [
+        {
+          "name": "provider",
+          "description": "Auth provider (betterauth, next-auth)",
+          "required": true
+        },
+        {
+          "name": "features",
+          "description": "Auth features (oauth, 2fa, email verification)",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "components": {
+    "shared": {
+      "AbbreviateNumber": {
+        "path": "src/components/shared/AbbreviateNumber.tsx",
+        "description": "Format large numbers into readable abbreviated format (1.5M, 2.5K)",
+        "props": ["value", "decimals", "suffixes"],
+        "examples": [
+          {
+            "title": "Basic Usage",
+            "code": "<AbbreviateNumber value={1500000} />"
+          }
+        ]
+      },
+      "ActionLink": {
+        "path": "src/components/shared/ActionLink.tsx",
+        "description": "Styled link component with hover effects",
+        "props": ["href", "external", "disabled", "onClick"],
+        "examples": [
+          {
+            "title": "External Link",
+            "code": "<ActionLink href=\"/docs\" external>Documentation</ActionLink>"
+          }
+        ]
+      },
+      "AdaptiveCard": {
+        "path": "src/components/shared/AdaptiveCard.tsx",
+        "description": "Responsive card that adapts to screen size",
+        "props": ["header", "footer", "shadow", "bordered", "padding"],
+        "examples": [
+          {
+            "title": "Card with Header and Footer",
+            "code": "<AdaptiveCard header=\"Title\" footer={<Button>Action</Button>}>Content</AdaptiveCard>"
+          }
+        ]
+      },
+      "DataTable": {
+        "path": "src/components/shared/DataTable.tsx",
+        "description": "Advanced data table with sorting, filtering, pagination built on TanStack Table",
+        "props": ["columns", "data", "pagination", "sortable", "filterable", "selectable"],
+        "examples": [
+          {
+            "title": "Full Featured Table",
+            "code": "<DataTable columns={columns} data={data} pagination sortable filterable selectable />"
+          }
+        ]
+      },
+      "Chart": {
+        "path": "src/components/shared/Chart.tsx",
+        "description": "ApexCharts wrapper for line, bar, pie, and more",
+        "props": ["type", "series", "options", "width", "height"],
+        "examples": [
+          {
+            "title": "Line Chart",
+            "code": "<Chart type=\"line\" series={data} height={350} />"
+          }
+        ]
+      }
+    },
+    "ui": {
+      "Button": {
+        "path": "src/components/ui/Button",
+        "description": "Button component with variants and sizes",
+        "props": ["variant", "size", "disabled", "loading", "icon"],
+        "examples": [
+          {
+            "title": "Primary Button",
+            "code": "<Button variant=\"primary\" size=\"md\">Click Me</Button>"
+          }
+        ]
+      },
+      "Input": {
+        "path": "src/components/ui/Input",
+        "description": "Text input with validation support",
+        "props": ["value", "onChange", "type", "placeholder", "disabled", "invalid"],
+        "examples": [
+          {
+            "title": "Text Input",
+            "code": "<Input value={value} onChange={setValue} placeholder=\"Enter text\" />"
+          }
+        ]
+      },
+      "Select": {
+        "path": "src/components/ui/Select",
+        "description": "Dropdown select component",
+        "props": ["options", "value", "onChange", "multiple", "searchable"],
+        "examples": [
+          {
+            "title": "Basic Select",
+            "code": "<Select options={options} value={value} onChange={setValue} />"
+          }
+        ]
+      },
+      "Dialog": {
+        "path": "src/components/ui/Dialog",
+        "description": "Modal dialog component",
+        "props": ["isOpen", "onClose", "title", "size"],
+        "examples": [
+          {
+            "title": "Basic Dialog",
+            "code": "<Dialog isOpen={isOpen} onClose={handleClose} title=\"Dialog Title\">Content</Dialog>"
+          }
+        ]
+      },
+      "Tabs": {
+        "path": "src/components/ui/Tabs",
+        "description": "Tabbed interface component",
+        "props": ["value", "onChange", "variant"],
+        "examples": [
+          {
+            "title": "Basic Tabs",
+            "code": "<Tabs value={activeTab} onChange={setActiveTab}><Tab label=\"Tab 1\" /></Tabs>"
+          }
+        ]
+      }
+    },
+    "hooks": {
+      "useDebounce": {
+        "path": "src/utils/hooks/useDebounce.ts",
+        "description": "Debounce a value to reduce API calls",
+        "params": ["value", "delay"],
+        "returns": "debouncedValue",
+        "example": "const debouncedSearch = useDebounce(search, 500);"
+      },
+      "useResponsive": {
+        "path": "src/utils/hooks/useResponsive.ts",
+        "description": "Detect responsive breakpoints",
+        "params": [],
+        "returns": "{ isMobile, isTablet, isDesktop, width, height }",
+        "example": "const { isMobile } = useResponsive();"
+      },
+      "useTheme": {
+        "path": "src/utils/hooks/useTheme.ts",
+        "description": "Theme management (mode, direction, schema)",
+        "params": [],
+        "returns": "{ mode, setMode, direction, setDirection, themeSchema, setSchema }",
+        "example": "const { mode, setMode } = useTheme();"
+      },
+      "useInfiniteScroll": {
+        "path": "src/utils/hooks/useInfiniteScroll.ts",
+        "description": "Infinite scrolling functionality",
+        "params": ["onLoadMore", "isLoading", "hasMore", "threshold"],
+        "returns": "{ ref, isLoading }",
+        "example": "const { ref } = useInfiniteScroll({ onLoadMore, isLoading, hasMore });"
+      }
+    },
+    "utils": {
+      "classNames": {
+        "path": "src/utils/classNames.ts",
+        "description": "Utility for conditional className strings",
+        "params": ["...classes"],
+        "returns": "string",
+        "example": "classNames('btn', isActive && 'active')"
+      },
+      "fileSizeUnit": {
+        "path": "src/utils/fileSizeUnit.ts",
+        "description": "Format bytes to human-readable file size",
+        "params": ["bytes", "decimals"],
+        "returns": "string",
+        "example": "fileSizeUnit(1536) // '1.5 KB'"
+      },
+      "sortBy": {
+        "path": "src/utils/sortBy.ts",
+        "description": "Sort array by property",
+        "params": ["array", "key", "order"],
+        "returns": "T[]",
+        "example": "sortBy(users, 'name', 'asc')"
+      },
+      "paginate": {
+        "path": "src/utils/paginate.ts",
+        "description": "Paginate array data",
+        "params": ["array", "page", "pageSize"],
+        "returns": "T[]",
+        "example": "paginate(data, 1, 10)"
+      },
+      "wildCardSearch": {
+        "path": "src/utils/wildCardSearch.ts",
+        "description": "Search with wildcard support",
+        "params": ["items", "query", "keys"],
+        "returns": "T[]",
+        "example": "wildCardSearch(users, 'john', ['name', 'email'])"
+      }
+    }
+  },
+  "templates": {
+    "dashboards": [
+      {
+        "name": "Ecommerce Dashboard",
+        "path": "src/app/(protected-pages)/dashboards/ecommerce",
+        "components": ["stats-cards", "revenue-chart", "recent-orders", "top-products"],
+        "features": ["real-time-data", "export", "filters"]
+      },
+      {
+        "name": "Analytics Dashboard",
+        "path": "src/app/(protected-pages)/dashboards/analytic",
+        "components": ["kpi-cards", "line-charts", "pie-charts", "data-tables"],
+        "features": ["date-range-picker", "comparison", "drill-down"]
+      },
+      {
+        "name": "Project Dashboard",
+        "path": "src/app/(protected-pages)/dashboards/project",
+        "components": ["project-stats", "gantt-chart", "task-list", "team-members"],
+        "features": ["drag-drop", "real-time-updates", "filters"]
+      }
+    ],
+    "auth": [
+      {
+        "name": "Sign In Simple",
+        "path": "src/components/auth/SignInSimple.tsx",
+        "features": ["email-password", "remember-me", "forgot-password"]
+      },
+      {
+        "name": "Sign In Side",
+        "path": "src/components/auth/SignInSide.tsx",
+        "features": ["email-password", "oauth", "split-layout"]
+      },
+      {
+        "name": "Sign Up Simple",
+        "path": "src/components/auth/SignUpSimple.tsx",
+        "features": ["email-password", "terms-acceptance", "validation"]
+      }
+    ],
+    "concepts": [
+      {
+        "name": "Customer Management",
+        "path": "src/app/(protected-pages)/concepts/customers",
+        "pages": ["list", "create", "edit", "details"],
+        "features": ["search", "filter", "export", "bulk-actions"]
+      },
+      {
+        "name": "Product Management",
+        "path": "src/app/(protected-pages)/concepts/products",
+        "pages": ["list", "create", "edit"],
+        "features": ["categories", "inventory", "pricing", "images"]
+      },
+      {
+        "name": "Order Management",
+        "path": "src/app/(protected-pages)/concepts/orders",
+        "pages": ["list", "details", "create"],
+        "features": ["status-tracking", "invoice", "shipping"]
+      },
+      {
+        "name": "Project Management",
+        "path": "src/app/(protected-pages)/concepts/projects",
+        "pages": ["scrum-board", "list", "details", "tasks"],
+        "features": ["kanban", "gantt", "comments", "attachments"]
+      }
+    ]
+  },
+  "guides": {
+    "getting-started": {
+      "installation": "npm install",
+      "development": "npm run dev",
+      "build": "npm run build",
+      "environment": "Configure .env file with required variables"
+    },
+    "component-usage": {
+      "importing": "import { Component } from '@/components/ui'",
+      "props": "All components support className, style, and children props",
+      "theming": "Components automatically adapt to theme configuration"
+    },
+    "best-practices": {
+      "server-components": "Use server components by default, add 'use client' only when needed",
+      "code-splitting": "Use lazy loading for large components",
+      "typescript": "Always define prop types using TypeScript interfaces",
+      "styling": "Use Tailwind utility classes, CSS variables for theming"
+    }
+  },
+  "apiIntegration": {
+    "service": "ApiService",
+    "path": "src/services/ApiService.ts",
+    "usage": "import ApiService from '@/services/ApiService'",
+    "methods": {
+      "fetchData": {
+        "description": "Generic API fetch method",
+        "example": "ApiService.fetchData<Response, Request>({ url: '/api/users', method: 'get' })"
+      }
+    }
+  },
+  "authentication": {
+    "provider": "BetterAuth",
+    "setup": "src/lib/auth.ts",
+    "client": "src/lib/auth-client.ts",
+    "features": ["email-password", "oauth", "session-management", "role-based-access"],
+    "usage": {
+      "signIn": "signIn.email({ email, password })",
+      "signUp": "signUp.email({ email, password, name })",
+      "signOut": "signOut()",
+      "session": "const session = useCurrentSession()"
+    }
+  },
+  "stateManagement": {
+    "library": "Zustand",
+    "path": "src/store",
+    "usage": "import { useStore } from '@/store'",
+    "features": ["devtools", "persist", "middleware"]
+  },
+  "styling": {
+    "framework": "Tailwind CSS",
+    "config": "tailwind.config.ts",
+    "customCSS": "src/assets/styles",
+    "variables": "CSS variables for theming (--primary, --gray-*, etc.)",
+    "font": "Inter"
+  }
+}
