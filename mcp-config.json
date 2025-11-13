@@ -1,0 +1,68 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home/user/code-code-bp-ui"
+      ],
+      "description": "Filesystem MCP server for project access",
+      "enabled": true
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "description": "Memory MCP server for persistent context and knowledge graphs",
+      "enabled": true
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "description": "GitHub MCP server for repository operations",
+      "enabled": true
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      },
+      "description": "Brave Search MCP server for web searches",
+      "enabled": false
+    },
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "${DATABASE_URL}"
+      ],
+      "description": "PostgreSQL MCP server for database operations",
+      "enabled": false
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ],
+      "description": "Puppeteer MCP server for browser automation",
+      "enabled": false
+    }
+  },
+  "globalShortcut": "CommandOrControl+Shift+.",
+  "version": "1.0.0"
+}

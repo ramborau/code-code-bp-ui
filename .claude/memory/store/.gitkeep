@@ -1,0 +1,4 @@
+# Memory Store
+
+This directory contains persistent memory data.
+Files in this directory are typically git-ignored.

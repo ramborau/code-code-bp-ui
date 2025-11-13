@@ -1,0 +1,87 @@
+{
+  "memory": {
+    "enabled": true,
+    "provider": "mcp-memory-server",
+    "persistence": {
+      "type": "file",
+      "location": ".claude/memory/store",
+      "encryption": false
+    },
+    "context": {
+      "max_tokens": 50000,
+      "retention_policy": "session",
+      "auto_summarize": true,
+      "summary_threshold": 40000
+    },
+    "knowledge_graph": {
+      "enabled": true,
+      "max_entities": 1000,
+      "max_relations": 5000,
+      "auto_extract": true,
+      "entity_types": [
+        "file",
+        "function",
+        "class",
+        "module",
+        "component",
+        "api",
+        "database",
+        "service",
+        "dependency",
+        "bug",
+        "feature",
+        "person"
+      ],
+      "relation_types": [
+        "imports",
+        "depends_on",
+        "calls",
+        "extends",
+        "implements",
+        "uses",
+        "contains",
+        "related_to",
+        "fixed_by",
+        "authored_by"
+      ]
+    },
+    "semantic_search": {
+      "enabled": true,
+      "embedding_model": "voyage-2",
+      "index_strategy": "incremental",
+      "relevance_threshold": 0.7
+    },
+    "conversation_history": {
+      "max_messages": 100,
+      "retention_days": 30,
+      "auto_prune": true
+    },
+    "learned_patterns": {
+      "enabled": true,
+      "categories": [
+        "code_style",
+        "architecture",
+        "common_bugs",
+        "refactoring_patterns",
+        "team_preferences"
+      ],
+      "confidence_threshold": 0.8
+    }
+  },
+  "sync": {
+    "enabled": false,
+    "remote": null,
+    "interval_minutes": 15
+  },
+  "privacy": {
+    "redact_secrets": true,
+    "redact_pii": true,
+    "patterns": [
+      "password",
+      "token",
+      "api_key",
+      "secret",
+      "private_key"
+    ]
+  }
+}

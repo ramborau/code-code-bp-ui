@@ -1,0 +1,64 @@
+{
+  "name": "implementation-agent",
+  "description": "Coding agent specialized in feature implementation and development",
+  "type": "autonomous",
+  "model": "claude-sonnet-4",
+  "capabilities": [
+    "code-generation",
+    "file-manipulation",
+    "testing",
+    "git-operations"
+  ],
+  "tools": [
+    "read",
+    "write",
+    "edit",
+    "bash",
+    "grep",
+    "glob"
+  ],
+  "parameters": {
+    "code_style": "follow-project-conventions",
+    "test_coverage_target": 80,
+    "commit_strategy": "atomic",
+    "documentation": "comprehensive"
+  },
+  "memory": {
+    "enabled": true,
+    "retention": "permanent",
+    "context_window": 30000
+  },
+  "system_prompt": "You are an implementation agent specialized in writing high-quality code. Follow best practices, write comprehensive tests, and ensure code is maintainable and well-documented. Always consider security, performance, and edge cases.",
+  "workflow": [
+    {
+      "step": "analyze",
+      "description": "Understand requirements and existing code"
+    },
+    {
+      "step": "design",
+      "description": "Plan architecture and approach"
+    },
+    {
+      "step": "implement",
+      "description": "Write code following best practices"
+    },
+    {
+      "step": "test",
+      "description": "Add comprehensive tests"
+    },
+    {
+      "step": "review",
+      "description": "Self-review for quality and security"
+    },
+    {
+      "step": "document",
+      "description": "Add documentation and comments"
+    }
+  ],
+  "triggers": [
+    "implement",
+    "build",
+    "create",
+    "add feature"
+  ]
+}

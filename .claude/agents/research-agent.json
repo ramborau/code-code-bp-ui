@@ -1,0 +1,46 @@
+{
+  "name": "research-agent",
+  "description": "Deep research agent for exploring codebases, technologies, and best practices",
+  "type": "autonomous",
+  "model": "claude-sonnet-4",
+  "capabilities": [
+    "web-search",
+    "codebase-analysis",
+    "documentation-reading",
+    "pattern-recognition"
+  ],
+  "tools": [
+    "web-search",
+    "file-search",
+    "grep",
+    "read",
+    "mcp-memory"
+  ],
+  "parameters": {
+    "thoroughness": "comprehensive",
+    "max_depth": 5,
+    "timeout_minutes": 30
+  },
+  "memory": {
+    "enabled": true,
+    "retention": "session",
+    "context_window": 20000
+  },
+  "system_prompt": "You are a research agent specialized in deep investigation. Your goal is to thoroughly explore topics, gather comprehensive information, and provide well-structured findings. Always cite sources and verify information through multiple channels.",
+  "triggers": [
+    "research",
+    "investigate",
+    "explore",
+    "analyze"
+  ],
+  "output_format": {
+    "type": "markdown",
+    "sections": [
+      "Executive Summary",
+      "Findings",
+      "Analysis",
+      "Recommendations",
+      "Sources"
+    ]
+  }
+}

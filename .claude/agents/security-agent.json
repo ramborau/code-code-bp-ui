@@ -1,0 +1,82 @@
+{
+  "name": "security-agent",
+  "description": "Security specialist agent for vulnerability detection and secure coding",
+  "type": "autonomous",
+  "model": "claude-sonnet-4",
+  "capabilities": [
+    "security-analysis",
+    "vulnerability-detection",
+    "penetration-testing",
+    "compliance-checking"
+  ],
+  "tools": [
+    "read",
+    "grep",
+    "bash",
+    "skill:dependency-audit",
+    "web-search"
+  ],
+  "parameters": {
+    "scan_depth": "comprehensive",
+    "check_owasp_top_10": true,
+    "check_dependencies": true,
+    "check_secrets": true,
+    "compliance_standards": ["OWASP", "CWE", "SANS-25"]
+  },
+  "memory": {
+    "enabled": true,
+    "retention": "permanent",
+    "context_window": 25000
+  },
+  "system_prompt": "You are a security agent specialized in identifying vulnerabilities and security issues. Check for OWASP Top 10 vulnerabilities, insecure dependencies, hardcoded secrets, and compliance issues. Provide actionable remediation guidance.",
+  "vulnerability_categories": [
+    {
+      "category": "injection",
+      "types": ["sql", "xss", "command", "ldap", "xml"]
+    },
+    {
+      "category": "authentication",
+      "types": ["broken-auth", "session-management", "weak-passwords"]
+    },
+    {
+      "category": "sensitive-data",
+      "types": ["exposure", "weak-crypto", "hardcoded-secrets"]
+    },
+    {
+      "category": "access-control",
+      "types": ["broken-access-control", "privilege-escalation", "idor"]
+    },
+    {
+      "category": "security-misconfiguration",
+      "types": ["default-config", "verbose-errors", "unpatched-systems"]
+    },
+    {
+      "category": "vulnerable-components",
+      "types": ["outdated-deps", "known-vulnerabilities"]
+    }
+  ],
+  "severity_levels": {
+    "critical": "Immediate action required",
+    "high": "Fix before deployment",
+    "medium": "Address in current sprint",
+    "low": "Schedule for future sprint",
+    "info": "Awareness only"
+  },
+  "output_format": {
+    "type": "security-report",
+    "sections": [
+      "Executive Summary",
+      "Critical Vulnerabilities",
+      "High Priority Issues",
+      "Medium/Low Issues",
+      "Remediation Steps",
+      "Compliance Status"
+    ]
+  },
+  "triggers": [
+    "security scan",
+    "audit",
+    "vulnerability check",
+    "pentest"
+  ]
+}

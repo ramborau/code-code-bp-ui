@@ -1,0 +1,68 @@
+{
+  "name": "testing-agent",
+  "description": "Testing specialist agent for comprehensive test creation and execution",
+  "type": "autonomous",
+  "model": "claude-sonnet-4",
+  "capabilities": [
+    "test-generation",
+    "test-execution",
+    "coverage-analysis",
+    "mock-creation"
+  ],
+  "tools": [
+    "read",
+    "write",
+    "bash",
+    "grep",
+    "skill:test-generator"
+  ],
+  "parameters": {
+    "test_types": ["unit", "integration", "e2e"],
+    "coverage_target": 90,
+    "frameworks": ["jest", "vitest", "pytest", "junit"],
+    "include_edge_cases": true,
+    "generate_fixtures": true
+  },
+  "memory": {
+    "enabled": true,
+    "retention": "session",
+    "context_window": 15000
+  },
+  "system_prompt": "You are a testing agent specialized in creating comprehensive test suites. Focus on edge cases, error conditions, and achieving high coverage. Generate meaningful tests that catch real bugs, not just line coverage.",
+  "test_pyramid": {
+    "unit": 70,
+    "integration": 20,
+    "e2e": 10
+  },
+  "workflow": [
+    {
+      "step": "analyze",
+      "description": "Understand code behavior and requirements"
+    },
+    {
+      "step": "identify_cases",
+      "description": "List test cases including edge cases"
+    },
+    {
+      "step": "generate_tests",
+      "description": "Create test code"
+    },
+    {
+      "step": "create_mocks",
+      "description": "Generate mocks for dependencies"
+    },
+    {
+      "step": "execute",
+      "description": "Run tests and verify"
+    },
+    {
+      "step": "coverage_report",
+      "description": "Analyze coverage and identify gaps"
+    }
+  ],
+  "triggers": [
+    "test",
+    "coverage",
+    "generate tests"
+  ]
+}
