@@ -1,0 +1,175 @@
+{
+  "name": "Code Code BP UI - Branding & Modification Rules",
+  "version": "1.0.0",
+  "description": "MCP configuration enforcing strict branding and modification policies",
+  "rules": {
+    "modification_policy": {
+      "critical": true,
+      "description": "DO NOT add, edit, or remove any part of any element until explicitly asked",
+      "restrictions": [
+        "No adding new components, features, or code without explicit request",
+        "No editing existing code, styles, or configurations without explicit request",
+        "No removing code, comments, or functionality without explicit request",
+        "No refactoring or improvements unless specifically asked",
+        "No proactive changes or suggestions implemented without approval"
+      ],
+      "action": "ASK FIRST before making ANY changes"
+    },
+    "branding": {
+      "critical": true,
+      "font": {
+        "family": "San Francisco",
+        "required": true,
+        "weights": [100, 200, 400, 500, 600, 700],
+        "sources": {
+          "100": "https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-ultralight-webfont.woff",
+          "200": "https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff",
+          "400": "https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff",
+          "500": "https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff",
+          "600": "https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-semibold-webfont.woff",
+          "700": "https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff"
+        },
+        "typography": {
+          "h1": { "weight": 700 },
+          "h2": { "weight": 600 },
+          "h3": { "weight": 500 },
+          "p": { "weight": 400 },
+          "p.thin": { "weight": 200 },
+          "p.ultralight": { "weight": 100 }
+        },
+        "restrictions": [
+          "DO NOT use Inter font",
+          "DO NOT use any font other than San Francisco",
+          "DO NOT introduce new fonts without explicit approval"
+        ]
+      },
+      "colors": {
+        "primary": "#00c307",
+        "primaryName": "Vibrant Green",
+        "required": true,
+        "restrictions": [
+          "DO NOT introduce new colors without explicit approval",
+          "DO NOT modify the primary color",
+          "Use only #00c307 for primary brand color",
+          "Use existing color tokens already in the repository"
+        ]
+      }
+    },
+    "core_rules": {
+      "critical": true,
+      "rules": [
+        {
+          "id": 1,
+          "rule": "Do not edit demo/ folder files",
+          "severity": "critical",
+          "description": "demo/ is read-only and the canonical source of components"
+        },
+        {
+          "id": 2,
+          "rule": "Do not use components stored outside demo/ folder",
+          "severity": "critical",
+          "description": "All UI components must originate from demo/"
+        },
+        {
+          "id": 3,
+          "rule": "Do not add or invent colors or fonts",
+          "severity": "critical",
+          "description": "Use only San Francisco font and #00c307 primary color"
+        },
+        {
+          "id": 4,
+          "rule": "Read and follow these rules before writing any code",
+          "severity": "critical",
+          "description": "Confirm compliance in PR description"
+        },
+        {
+          "id": 5,
+          "rule": "Keep fresh copy in donor branch",
+          "severity": "high",
+          "description": "Branch donor must contain untouched demo/ and working starter/ snapshot"
+        }
+      ]
+    },
+    "workflow": {
+      "steps": [
+        {
+          "step": 1,
+          "name": "Explore demo/ first",
+          "description": "Read all files in demo/, understand components, props, styles, and examples",
+          "output": "Master list of all available components"
+        },
+        {
+          "step": 2,
+          "name": "Create components list in starter/",
+          "description": "Add file at starter/COMPONENTS_FROM_DEMO.md listing all components",
+          "output": "Directory map for the team"
+        },
+        {
+          "step": 3,
+          "name": "Build pages only in starter/",
+          "description": "Create pages/experiments in starter/ using demo/ components as-is",
+          "restrictions": [
+            "Never move components into starter/ for permanent edits",
+            "Create wrappers in starter/ that compose demo/ components if modifications needed"
+          ]
+        },
+        {
+          "step": 4,
+          "name": "Experiment → Approve → Freeze",
+          "description": "Iterate until satisfied, then freeze page version",
+          "action": "Tag commit as ui/freeze/<page-name>"
+        },
+        {
+          "step": 5,
+          "name": "Component changes process (rare & formal)",
+          "description": "If demo/ component must change, open PR with justification",
+          "requirements": [
+            "Describe why change is needed",
+            "Include before/after usage examples",
+            "Get explicit approval",
+            "Until PR merges, experiment in starter/ via wrappers"
+          ]
+        },
+        {
+          "step": 6,
+          "name": "No UI outside these rules",
+          "description": "Even for quick hacks, work in starter/",
+          "action": "Mark temporary code as 'TEMP — remove after demo'"
+        }
+      ]
+    },
+    "conventions": {
+      "branching": {
+        "donor": "Contains untouched copies of demo/ and starter/",
+        "feature": "ui/<short-description>",
+        "freeze_tag": "ui/freeze/<page-name>@<YYYYMMDD>"
+      },
+      "pull_requests": {
+        "title_format": "[UI] <short-summary> — <demo-component-used>"
+      }
+    },
+    "checklist": {
+      "description": "Use before every change",
+      "items": [
+        "Did I read demo/ fully for the component I want to use?",
+        "Am I editing starter/ and not demo/?",
+        "Am I using only the provided fonts and colors?",
+        "Did I create/confirm donor branch snapshot?",
+        "If modifying demo/, did I open a PR with justification and approvals?",
+        "Was I explicitly asked to make this change?",
+        "Am I using San Francisco font (not Inter or any other font)?",
+        "Am I using the primary color #00c307 (not any other green)?"
+      ]
+    }
+  },
+  "golden_rules": [
+    "ASK before changing anything - Never add, edit, or remove without explicit request",
+    "San Francisco font ONLY - No exceptions, no alternatives",
+    "Primary color #00c307 ONLY - Use the exact vibrant green specified"
+  ],
+  "enforcement": {
+    "level": "strict",
+    "auto_check": true,
+    "fail_on_violation": true
+  }
+}
