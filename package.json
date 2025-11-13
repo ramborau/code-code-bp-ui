@@ -1,0 +1,28 @@
+{
+  "name": "code-code-bp-ui",
+  "version": "1.0.0",
+  "description": "UI Component Library with MCP Server and Claude Skill",
+  "private": true,
+  "scripts": {
+    "mcp": "node mcp-server.js",
+    "demo:dev": "cd demo && npm run dev",
+    "demo:build": "cd demo && npm run build",
+    "starter:dev": "cd starter && npm run dev",
+    "starter:build": "cd starter && npm run build",
+    "install:all": "npm install && cd demo && npm install && cd ../starter && npm install"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "keywords": [
+    "ui",
+    "components",
+    "nextjs",
+    "react",
+    "mcp",
+    "claude"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

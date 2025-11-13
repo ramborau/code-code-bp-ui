@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "ui-components": {
+      "command": "node",
+      "args": ["mcp-server.js"],
+      "description": "MCP server for UI component library - provides access to demo components and starter workspace"
+    }
+  }
+}
